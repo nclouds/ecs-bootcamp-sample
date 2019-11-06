@@ -15,7 +15,7 @@
 FROM ubuntu:latest
 MAINTAINER widha@amazon.com
 RUN apt-get update -y && apt-get install -y apt-transport-https curl ca-certificates wget unzip python-pip python-dev build-essential && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
-RUN wget https://s3.dualstack.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-linux-2.x.zip && unzip aws-xray-daemon-linux-2.x.zip && cp ./xray /usr/bin/xray
+
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
@@ -23,5 +23,4 @@ ENTRYPOINT ["python"]
 
 EXPOSE 3000
 
-CMD ["xray", "--log-file /var/log/xray-daemon.log"] &
 CMD ["app.py"]
