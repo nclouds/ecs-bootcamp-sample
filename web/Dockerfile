@@ -19,8 +19,8 @@ RUN apt-get update -y && apt-get install -y apt-transport-https curl ca-certific
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
 
 EXPOSE 3000
 
-ENTRYPOINT ["python" "app.py"]
-
+CMD ["app.py"]
